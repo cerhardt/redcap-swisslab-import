@@ -1,0 +1,146 @@
+{
+	"name": "Swisslab Import",
+
+	"namespace": "meDIC\\SwisslabImport",
+
+	"description": "Swisslab Import Module",
+
+	"documentation": "README.md",
+
+	"framework-version": 8,
+
+	"authors": [
+		{
+			"name": "Christian Erhardt",
+			"email": "christian.erhardt@uni-tuebingen.de",
+			"institution": "meDIC"
+		}
+	],
+
+	"permissions": [
+
+	],
+	
+	"enable-every-page-hooks-on-system-pages": false,	
+
+	"links": {
+		"project": [
+
+		],
+		"control-center": [
+
+		]
+	},
+
+	"no-auth-pages": [
+        "swisslab_config_api",
+        "swisslab_cases_codes_api"
+	],
+
+	"project-settings": [
+       {
+        "key": "case_id",
+        "name": "Feld Fall ID",
+         "required": true,
+         "type": "field-list"
+       },
+       {
+         "key": "descriptive-text",
+         "name": "Zuordnung der Swisslab-Codes zu den Feldern in REDCap",
+         "type": "descriptive"
+       },
+       {
+        "key": "tolerance",
+        "name": "Toleranzzeitraum +- Tage",
+        "required": true,
+        "type": "text"
+       },
+       {
+         "key": "field-list",
+         "name": "List of Labcodes",
+         "required": true,
+         "type": "sub_settings",
+         "repeatable":true,
+         "sub_settings":[
+            {
+              "key": "labcode",
+              "name": "Lab Code",
+              "required": true,
+              "type": "text"
+            },
+            {
+               "key": "redcap_field",
+               "name": "REDCap Feld für Laborwert",
+               "required": true,
+               "type": "field-list"
+            },
+            {
+               "key": "redcap_lab_date",
+               "name": "REDCap Feld für Abnahmedatum",
+               "required": false,
+               "type": "field-list",
+               "validation": "date"
+            },
+            {
+               "key": "redcap_visit_date",
+               "name": "REDCap Feld mit Visitendatum",
+               "required": false,
+               "type": "field-list",
+               "validation": "date"
+            },
+            {
+               "key": "redcap_event",
+               "name": "REDCap Event",
+               "required": false,
+               "type": "event-list"
+            },
+    		{
+    			"key": "select",
+    			"name": "Auswahlstrategie bei mehreren Werten",
+    			"required": false,
+    			"type": "dropdown",
+    			"choices": [
+    				{ "value": "0", "name": "Kleinster numerischer Wert" },
+    				{ "value": "1", "name": "Größter numerischer Wert" },
+    				{ "value": "2", "name": "Frühester Wert" },
+    				{ "value": "3", "name": "Letzter Wert" },
+    				{ "value": "4", "name": "Nächster Wert" }
+    			]
+    		}
+         ]
+      }
+    ],
+
+	"system-settings": [
+        {
+            "key": "allowed_domain",
+            "name": "internal REDCap domain",
+            "required": true,
+            "type": "text"
+        },
+        {
+          "key": "user",
+          "name": "API user",
+          "required": true,
+          "type": "password"
+        },
+        {
+          "key": "password",
+          "name": "API password",
+          "required": true,
+          "type": "password"
+        }
+
+	],
+
+	"crons": [
+
+	],
+
+	"compatibility": {
+		"php-version-min": "",
+		"php-version-max": "",
+		"redcap-version-min": "",
+		"redcap-version-max": ""
+	}
+}
