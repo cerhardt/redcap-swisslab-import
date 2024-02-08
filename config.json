@@ -39,6 +39,11 @@
 
 	"project-settings": [
        {
+        "key": "full_import",
+        "name": "Bestehende Daten überschreiben?",
+        "type": "checkbox"
+       },
+       {
         "key": "case_id",
         "name": "Feld Fall ID",
          "required": true,
@@ -114,7 +119,7 @@
 	"system-settings": [
         {
             "key": "allowed_domain",
-            "name": "internal REDCap domain",
+            "name": "interne REDCap domain",
             "required": true,
             "type": "text"
         },

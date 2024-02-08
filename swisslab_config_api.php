@@ -24,10 +24,12 @@ if ($iModuleID) {
     $aEnabled = array();
     while($row = $result->fetch_assoc()) {
         if (strlen($row['project_id']) == 0) continue;
-        if ($row['key'] == 'enabled' && $row['value'] == 'true') {
+        
+        // enabled projects
+        if (!isset($aEnabled[$row['project_id']]) && $module->isModuleEnabled($module->PREFIX, $row['project_id']) == true) {
             $aEnabled[$row['project_id']] = true;
-            continue;
         }
+        // json decode
         if ($row['type'] == 'json-array') {
           $json = json_decode($row['value'], true);
           if ($json !== false) {
