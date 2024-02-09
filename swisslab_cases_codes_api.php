@@ -33,7 +33,7 @@ if (is_array($aConfig)) {
                 if (is_array($aCases)) {
                     foreach($aCases as $aCaseTmp) {
                         if (strlen($aCaseTmp['case_id']) > 0) {
-                            $aCaseIDsComplete[$aCaseTmp['case_id']] = true;
+                            $aCaseIDsComplete[trim($aCaseTmp['case_id'])] = true;
                         }
                     }
                 }
@@ -43,8 +43,13 @@ if (is_array($aConfig)) {
         // fetch labcodes
         if ($sMode == 'codes') {
             // Labcodes
-            foreach($aProjConfig['labcodes'] as $sKey => $mVal) {
-                $aCodesComplete[$sKey] = true;
+            foreach($aProjConfig['labcodes'] as $aLab) {
+                foreach($aLab as $sKey => $foo) {
+                    $aLabCodes = explode("|",$sKey);
+                    foreach($aLabCodes as $sLabCode) {
+                        $aCodesComplete[trim($sLabCode)] = true;
+                    }
+                }
             }
         }
     }

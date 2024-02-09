@@ -49,7 +49,7 @@ if ($iModuleID) {
                 foreach($aConfigComplete[$iProjectID] as $key => $val) {
                     if ($key == 'field-list') continue;
                     if (is_array($val)) {
-                        $aConfig[$iProjectID]['labcodes'][$aLabCodes[$i]][$key] = $val[$i];
+                        $aConfig[$iProjectID]['labcodes'][$i][$aLabCodes[$i]][$key] = $val[$i];
                     } else {
                         $aConfig[$iProjectID][$key] = $val;
                     }
