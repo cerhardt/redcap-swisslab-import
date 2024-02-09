@@ -45,19 +45,19 @@
        },
        {
         "key": "case_id",
-        "name": "Feld Fall ID",
+        "name": "Feldname: Fall ID",
          "required": true,
          "type": "field-list"
        },
        {
          "key": "descriptive-text",
-         "name": "Zuordnung der Swisslab-Codes zu den Feldern in REDCap",
+         "name": "Zuordnung der Analyt Codes aus Swisslab zu den Feldern in REDCap",
          "type": "descriptive"
        },
        {
         "key": "tolerance",
         "name": "Toleranzzeitraum +- Tage",
-        "required": true,
+        "required": false,
         "type": "text"
        },
        {
@@ -69,33 +69,33 @@
          "sub_settings":[
             {
               "key": "labcode",
-              "name": "Lab Code",
+              "name": "Analyt Code aus Swisslab",
               "required": true,
               "type": "text"
             },
             {
                "key": "redcap_field",
-               "name": "REDCap Feld für Laborwert",
+               "name": "Feldname: Laborwert aus Swisslab",
                "required": true,
                "type": "field-list"
             },
             {
                "key": "redcap_lab_date",
-               "name": "REDCap Feld für Abnahmedatum",
+               "name": "Feldname: Abnahmedatum aus Swisslab",
                "required": false,
                "type": "field-list",
                "validation": "date"
             },
             {
                "key": "redcap_visit_date",
-               "name": "REDCap Feld mit Visitendatum",
+               "name": "Feldname: Visitendatum",
                "required": false,
                "type": "field-list",
                "validation": "date"
             },
             {
                "key": "redcap_event",
-               "name": "REDCap Event",
+               "name": "Event",
                "required": false,
                "type": "event-list"
             },
