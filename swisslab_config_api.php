@@ -56,9 +56,6 @@ if ($iModuleID) {
                 }
             }
         }
-        if (!isset($aConfig['tolerance'])) {
-            $aConfig[$iProjectID]['tolerance'] = '0';
-        }
     }
     
     header("Content-Type: application/json");
