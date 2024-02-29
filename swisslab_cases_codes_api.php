@@ -32,8 +32,11 @@ if (is_array($aConfig)) {
 
                 if (is_array($aCases)) {
                     foreach($aCases as $aCaseTmp) {
-                        if (strlen($aCaseTmp['case_id']) > 0) {
-                            $aCaseIDsComplete[trim($aCaseTmp['case_id'])] = true;
+                        if (strlen($aCaseTmp[$aProjConfig['case_id']]) > 0) {
+                            $aCaseTmpSplit =explode(",",$aCaseTmp[$aProjConfig['case_id']]);
+                            foreach($aCaseTmpSplit as $CaseTmp) {
+                                $aCaseIDsComplete[trim(ltrim($CaseTmp,'0'))] = true;
+                            }
                         }
                     }
                 }
@@ -53,7 +56,6 @@ if (is_array($aConfig)) {
             }
         }
     }
-
 }
 
 if ($sMode == 'cases') {
