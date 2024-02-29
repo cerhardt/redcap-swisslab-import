@@ -39,9 +39,47 @@
 
 	"project-settings": [
        {
+        "key": "ish_id",
+        "name": "Feldname: Pat-ID (ISH)",
+         "required": true,
+         "type": "field-list"
+       },
+       {
+        "key": "case_id",
+        "name": "Feldname: Fall-ID (ISH)",
+         "required": true,
+         "type": "field-list"
+       },
+       {
         "key": "full_import",
         "name": "Bestehende Daten überschreiben?",
         "type": "checkbox"
+       },
+       {
+        "key": "all_instances",
+        "name": "Alle Zeitpunkte importieren?",
+        "type": "checkbox"
+       },
+       {
+         "key": "redcap_instance_lab_date",
+         "name": "Feldname: Abnahmedatum",
+         "required": true,
+         "type": "field-list",
+         "validation": "datetime",
+         "branchingLogic": {
+           "field": "all_instances",
+           "value": "1"
+         }         
+       },
+       {
+         "key": "redcap_instance_event",
+         "name": "Event",
+         "required": false,
+         "type": "event-list",
+         "branchingLogic": {
+           "field": "all_instances",
+           "value": "1"
+         }         
        },
        {
         "key": "form_state",
@@ -55,27 +93,19 @@
         ]
        },
        {
-        "key": "ish_id",
-        "name": "Feldname: Pat-ID (ISH)",
-         "required": true,
-         "type": "field-list"
-       },
-       {
-        "key": "case_id",
-        "name": "Feldname: Fall-ID (ISH)",
-         "required": true,
-         "type": "field-list"
-       },
-       {
          "key": "descriptive-text",
-         "name": "Zuordnung der Analyt-Codes aus Swisslab zu den Feldern in REDCap",
+         "name": "<h4>Zuordnung der Analyt-Codes aus Swisslab zu den Feldern in REDCap</h4>",
          "type": "descriptive"
        },
        {
         "key": "tolerance",
         "name": "Toleranzzeitraum +- Tage um das Visitendatum",
         "required": false,
-        "type": "text"
+        "type": "text",
+        "branchingLogic": {
+          "field": "all_instances",
+          "value": ""
+        }         
        },
        {
          "key": "field-list",
@@ -101,20 +131,32 @@
                "name": "Feldname: Abnahmedatum",
                "required": false,
                "type": "field-list",
-               "validation": "date"
+               "validation": "date",
+               "branchingLogic": {
+                 "field": "all_instances",
+                 "value": ""
+               }         
             },
             {
                "key": "redcap_visit_date",
                "name": "Feldname: Visitendatum (REDCap)",
                "required": false,
                "type": "field-list",
-               "validation": "date"
+               "validation": "date",
+               "branchingLogic": {
+                 "field": "all_instances",
+                 "value": ""
+               }         
             },
             {
                "key": "redcap_event",
                "name": "Event",
                "required": false,
-               "type": "event-list"
+               "type": "event-list",
+               "branchingLogic": {
+                 "field": "all_instances",
+                 "value": ""
+               }         
             },
     		{
     			"key": "select",
@@ -127,7 +169,11 @@
     				{ "value": "2", "name": "Frühester Wert" },
     				{ "value": "3", "name": "Letzter Wert" },
     				{ "value": "4", "name": "Nächster Wert" }
-    			]
+    			],
+               "branchingLogic": {
+                 "field": "all_instances",
+                 "value": ""
+               }         
     		}
          ]
       }
