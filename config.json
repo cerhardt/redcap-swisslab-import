@@ -40,25 +40,25 @@
 	"project-settings": [
        {
         "key": "ish_id",
-        "name": "Feldname: Pat-ID (ISH)",
+        "name": "<strong>Feldname: Pat-ID (ISH)</strong>",
          "required": true,
          "type": "field-list"
        },
        {
         "key": "case_id",
-        "name": "Feldname: Fall-ID (ISH)",
-         "required": true,
-         "type": "field-list"
+        "name": "<strong>Feldname: Fall-ID (ISH)</strong>",
+        "required": true,
+        "type": "field-list"
        },
        {
-        "key": "full_import",
-        "name": "Bestehende Daten überschreiben?",
-        "type": "checkbox"
-       },
-       {
-        "key": "all_instances",
-        "name": "Alle Zeitpunkte importieren?",
-        "type": "checkbox"
+        "key": "import_mode",
+        "name": "<strong>Modus</strong>",
+        "required": true,
+        "type": "dropdown",
+        "choices": [
+        	{ "value": "0", "name": "Einen Wert pro Fall / Visite importieren" },
+        	{ "value": "1", "name": "Alle Daten importieren" }
+        ]
        },
        {
          "key": "redcap_instance_lab_date",
@@ -67,7 +67,7 @@
          "type": "field-list",
          "validation": "datetime",
          "branchingLogic": {
-           "field": "all_instances",
+           "field": "import_mode",
            "value": "1"
          }         
        },
@@ -77,9 +77,14 @@
          "required": false,
          "type": "event-list",
          "branchingLogic": {
-           "field": "all_instances",
+           "field": "import_mode",
            "value": "1"
          }         
+       },
+       {
+        "key": "full_import",
+        "name": "Bestehende Daten überschreiben?",
+        "type": "checkbox"
        },
        {
         "key": "form_state",
@@ -103,8 +108,8 @@
         "required": false,
         "type": "text",
         "branchingLogic": {
-          "field": "all_instances",
-          "value": ""
+          "field": "import_mode",
+          "value": "0"
         }         
        },
        {
@@ -133,8 +138,8 @@
                "type": "field-list",
                "validation": "date",
                "branchingLogic": {
-                 "field": "all_instances",
-                 "value": ""
+                 "field": "import_mode",
+                 "value": "0"
                }         
             },
             {
@@ -144,8 +149,8 @@
                "type": "field-list",
                "validation": "date",
                "branchingLogic": {
-                 "field": "all_instances",
-                 "value": ""
+                 "field": "import_mode",
+                 "value": "0"
                }         
             },
             {
@@ -154,8 +159,8 @@
                "required": false,
                "type": "event-list",
                "branchingLogic": {
-                 "field": "all_instances",
-                 "value": ""
+                 "field": "import_mode",
+                 "value": "0"
                }         
             },
     		{
@@ -171,8 +176,8 @@
     				{ "value": "4", "name": "Nächster Wert" }
     			],
                "branchingLogic": {
-                 "field": "all_instances",
-                 "value": ""
+                 "field": "import_mode",
+                 "value": "0"
                }         
     		}
          ]
@@ -182,21 +187,27 @@
 	"system-settings": [
         {
             "key": "allowed_domain",
-            "name": "interne REDCap domain",
+            "name": "Host",
             "required": true,
             "type": "text"
         },
         {
           "key": "user",
-          "name": "API user",
+          "name": "Benutzername",
           "required": true,
           "type": "password"
         },
         {
           "key": "password",
-          "name": "API password",
+          "name": "Passwort",
           "required": true,
           "type": "password"
+        },
+        {
+          "key": "valid_ips",
+          "name": "Zugelassene IP Adressen",
+          "required": false,
+          "type": "text"
         }
 
 	],

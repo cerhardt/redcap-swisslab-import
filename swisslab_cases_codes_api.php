@@ -18,7 +18,6 @@ $sMode = $_GET['mode'];
 
 // fetch project configs
 $aConfig = json_decode(http_get($module->configAPI,10,$module->getSystemSetting('user').":".$module->getSystemSetting('password')), true);
-//print_r($aConfig);
 
 $aCaseIDsComplete = $aCodesComplete = array();
 

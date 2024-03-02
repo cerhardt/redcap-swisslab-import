@@ -38,6 +38,15 @@ class SwisslabImport extends \ExternalModules\AbstractExternalModule {
             header('HTTP/1.1 403 Forbidden');
             exit;
         }
+        $ip = \System::clientIpAddress();
+        if (strlen($this->getSystemSetting('valid_ips')) > 0) {
+            $aIPs = explode(",",$this->getSystemSetting('valid_ips'));
+            $aIPs[] = $_SERVER['SERVER_ADDR'];
+            if (!in_array($ip, $aIPs,true)) {
+                header('HTTP/1.1 403 Forbidden');
+                exit;
+            }
+        }
     } 
 
     /**
