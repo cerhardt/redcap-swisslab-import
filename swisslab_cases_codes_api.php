@@ -19,7 +19,7 @@ $sMode = $_GET['mode'];
 // fetch project configs
 $aConfig = json_decode(http_get($module->configAPI,10,$module->getSystemSetting('user').":".$module->getSystemSetting('password')), true);
 
-$aCaseIDsComplete = $aCodesComplete = array();
+$aCaseIDsComplete = $aCodesComplete = $aRet = array();
 
 if (is_array($aConfig)) {
     foreach($aConfig as $iProj => $aProjConfig) {
@@ -67,7 +67,8 @@ if ($sMode == 'codes') {
         'labcodes' => array_keys($aCodesComplete)
     );
 }
-
-header("Content-Type: application/json");
-echo json_encode($aRet,JSON_UNESCAPED_SLASHES); //format the array into json data
+if (count($aRet) > 0) {
+    header("Content-Type: application/json");
+    echo json_encode($aRet,JSON_UNESCAPED_SLASHES); //format the array into json data
+}
 ?>                                    
