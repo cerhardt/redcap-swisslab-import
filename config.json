@@ -188,7 +188,7 @@
         {
             "key": "allowed_domain",
             "name": "Host",
-            "required": true,
+            "required": false,
             "type": "text"
         },
         {
