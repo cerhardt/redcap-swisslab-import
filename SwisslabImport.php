@@ -66,5 +66,35 @@ class SwisslabImport extends \ExternalModules\AbstractExternalModule {
         }
         return $sUrl;    
     }
+    
+    public static function csv_to_array($filename='', $delimiter=',') {
+        if(!file_exists($filename) || !is_readable($filename))
+            return FALSE;
+    
+        // BOM as a string for comparison.
+        $bom = "\xef\xbb\xbf";
+        
+        $header = NULL;
+        $data = array();
+        if (($handle = fopen($filename, 'r')) !== FALSE)
+        {
+            // Progress file pointer and get first 3 characters to compare to the BOM string.
+            if (fgets($handle, 4) !== $bom) {
+                // BOM not found - rewind pointer to start of file.
+                rewind($handle);
+            }
+            while (($row = fgetcsv($handle, 0, $delimiter)) !== FALSE)
+            {
+                $row = array_map('trim', $row);
+                if(!$header)
+                    $header = $row;
+                else
+                    $data[] = array_combine($header, $row);
+            }
+            fclose($handle);
+        }
+        return $data;
+    }
+    
 
 }

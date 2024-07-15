@@ -25,7 +25,12 @@
 
 	"links": {
 		"project": [
-
+            {
+                "name": "Swisslab Config <-> CSV",
+                "icon": "fas fa-receipt",
+                "url": "swisslab_config_csv.php",
+                "show-header-and-footer": false
+            }
 		],
 		"control-center": [
 
