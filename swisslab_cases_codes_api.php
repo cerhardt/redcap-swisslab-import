@@ -34,7 +34,11 @@ if (is_array($aConfig)) {
                         if (strlen($aCaseTmp[$aProjConfig['case_id']]) > 0) {
                             $aCaseTmpSplit =explode(",",$aCaseTmp[$aProjConfig['case_id']]);
                             foreach($aCaseTmpSplit as $CaseTmp) {
-                                $aCaseIDsComplete[trim(ltrim($CaseTmp,'0'))] = true;
+                                $CaseTmp = trim(ltrim($CaseTmp,'0'));
+                                if (strlen($CaseTmp) == 9) {
+                                    $CaseTmp = substr($CaseTmp, 0, -1);
+                                }
+                                $aCaseIDsComplete[$CaseTmp] = true;
                             }
                         }
                     }
