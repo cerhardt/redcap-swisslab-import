@@ -38,6 +38,8 @@ if (is_array($aConfig)) {
                                 if (strlen($CaseTmp) == 9) {
                                     $CaseTmp = substr($CaseTmp, 0, -1);
                                 }
+                                if (!ctype_digit($CaseTmp)) continue;
+                                
                                 $aCaseIDsComplete[$CaseTmp] = true;
                             }
                         }
