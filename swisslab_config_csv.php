@@ -25,6 +25,9 @@ if ($sMode == 'import') {
                 if (!isset($aRow['labcode']) || !isset($aRow['redcap_field'])) {
                     continue;
                 }
+                if (strlen($aRow['labcode']) == 0 || strlen($aRow['redcap_field']) == 0) {
+                    continue;
+                }
                 $settings['field-list'][$idx] = 'true';
                 // Pflichtfelder
                 $settings['labcode'][$idx] = $aRow['labcode'];
@@ -73,6 +76,8 @@ if ($sMode == 'export') {
 
     if (is_array($settings['field-list'])) {
         foreach($settings['field-list'] as $idx => $foo) {
+            if (strlen($settings['labcode'][$idx]) == 0 || strlen($settings['redcap_field'][$idx]) == 0) continue;
+            
             $aCSV[$idx]['labcode'] = $settings['labcode'][$idx];
             $aCSV[$idx]['redcap_field'] = $settings['redcap_field'][$idx];
             $aCSV[$idx]['redcap_lab_date'] = $settings['redcap_lab_date'][$idx];
